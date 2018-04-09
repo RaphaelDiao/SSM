@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xsi:schemaLocation=" http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/mvc
+         http://www.springframework.org/schema/mvc/spring-mvc.xsd
+          ">
+
+
+      <context:component-scan base-package="com.yonghui"/>
+      <mvc:annotation-driven></mvc:annotation-driven>
+
+      <bean id="Userdao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+          <property name="mapperInterface" value="com.yonghui.dao.UserDao"/>
+            <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+      </bean>
+
+      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+             <property name="configLocation" value="classpath:mybatis-config.xml"/>
+            <property name="dataSource" ref="mydatasource"/>
+      </bean>
+
+      <bean id="mydatasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+            <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mydb3"/>
+            <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+            <property name="user" value="root"/>
+            <property name="password" value="28614983"/>
+      </bean>
+
+
+</beans>
