@@ -32,7 +32,7 @@ public class UserController {
 
 //        int register = userService.register(user);
 
-        System.out.println();
+        System.out.println("login ing ");
 
 
         return "/index.jsp";
